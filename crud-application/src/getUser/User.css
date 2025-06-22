@@ -1,0 +1,44 @@
+
+.userTable{
+    width: 80%;
+    margin: 50px auto;
+    background-color: #c1c5f15e;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);  
+    padding: 20px;  
+}
+
+.table{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 40px;
+}
+
+.userTable table thead th {
+    background-color: #008b8b;
+    color: #fff;
+    padding: 10px;
+    text-align: left;
+}
+
+.userTable table tbody tr {
+    text-align: center;
+    vertical-align: middle;
+    padding: 10px;
+}
+.actionBtn{
+    background-color: #008b8b;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: left;
+    display: flex;
+}
+.editBtn{
+    margin-right: 20px;
+}
+.text-align-center{
+    text-align: end;
+}
