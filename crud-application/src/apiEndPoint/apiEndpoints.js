@@ -8,5 +8,7 @@ export const API_ENDPOINTS = {
   DELETE_USER: (userId) => `${BASE_URL}/delete/user/${userId}`,
   ADD_USER: `${BASE_URL}/user`,
   UPDATE_USER: (id) => `${BASE_URL}/update/user/${id}`,
+  REGISTER_USER: `${BASE_URL}/auth/register`, 
+  LOGIN_USER: `${BASE_URL}/auth/login`, // Added login endpoint
   // Add more endpoints as needed
 };

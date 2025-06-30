@@ -29,16 +29,18 @@ const AddUser = () => {
     setLoading(true);
     e.preventDefault();
     await new Promise((resolve) => setTimeout(resolve, 2000));
+    const token = localStorage.getItem("token");
     await axios
-      .post(API_ENDPOINTS.ADD_USER, user)
+      .post(API_ENDPOINTS.ADD_USER, user, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
       .then((response) => {
         toast.success(response.data.message, { position: "top-center" });
         navigate("/");
       })
-
       .catch((error) => {
         console.error("Error adding user", error);
-        toast.error(error.response.data.message, { position: "top-center" });
+        toast.error(error.response?.data?.message || "Failed to add user", { position: "top-center" });
       });
     setLoading(false);
   };

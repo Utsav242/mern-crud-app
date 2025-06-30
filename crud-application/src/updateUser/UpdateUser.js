@@ -28,8 +28,11 @@ const UpdateUser = () => {
 
   useEffect(() => {
     setLoading(true);
+    const token = localStorage.getItem("token");
     axios
-      .get(API_ENDPOINTS.GET_USER_BY_ID(id))
+      .get(API_ENDPOINTS.GET_USER_BY_ID(id), {
+        headers: { Authorization: `Bearer ${token}` },
+      })
       .then((respponse) => {
         setUser(respponse.data);
       })
@@ -42,8 +45,11 @@ const UpdateUser = () => {
     setLoading(true);
     e.preventDefault();
     await new Promise((resolve) => setTimeout(resolve, 2000));
+    const token = localStorage.getItem("token");
     await axios
-      .put(API_ENDPOINTS.UPDATE_USER(id), user)
+      .put(API_ENDPOINTS.UPDATE_USER(id), user, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
       .then((response) => {
         toast.success(response.data.message, { position: "top-center" });
         navigate("/");
