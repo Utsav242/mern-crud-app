@@ -4,6 +4,7 @@ import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import route from "./routes/userRoutes.js";
 import cors from "cors";
+import authRoutes from "./routes/authRoutes.js";
 
 const app = express();
 app.use(bodyParser.json());
@@ -28,3 +29,4 @@ mongoose
 
 
   app.use("/api", route);
+  app.use("/api/auth", authRoutes);

@@ -15,7 +15,10 @@ const User = () => {
       setLoading(true);
       try {
         await new Promise((resolve) => setTimeout(resolve, 2000)); // 2 second artificial delay
-        const response = await axios.get(API_ENDPOINTS.GET_USERS);
+        const token = localStorage.getItem("token");
+        const response = await axios.get(API_ENDPOINTS.GET_USERS, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
         setUsers(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -29,8 +32,11 @@ const User = () => {
   const deleteUser = async (userId) => {
     setLoading(true);
     await new Promise((resolve) => setTimeout(resolve, 2000)); // 2 second delay
+    const token = localStorage.getItem("token");
     await axios
-      .delete(API_ENDPOINTS.DELETE_USER(userId))
+      .delete(API_ENDPOINTS.DELETE_USER(userId), {
+        headers: { Authorization: `Bearer ${token}` },
+      })
       .then((response) => {
         setUsers((prevUser) => prevUser.filter((user) => user._id !== userId));
         toast.success(response.data.message, { position: "top-center" });
@@ -38,7 +44,7 @@ const User = () => {
       .catch((error) => {
         console.error("Error deleting user", error);
         toast.error("Failed to delete user", { position: "top-center" });
-      })
+      });
     setLoading(false);
   };
   return (
